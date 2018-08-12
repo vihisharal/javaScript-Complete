@@ -126,11 +126,11 @@ switch(guess){
 /*
     Problem : A and B are two player get hight and age of both anyone with hight plus 2 times age is winner.
 */
-ah=prompt("Player A Enter hight : ");
-aa=prompt("Player A Enter age : ");
-bh=prompt("Player B Enter hight : ");
-ba=prompt("Player B Enter age : ");
-console.log("Winner : " + ( (ah+aa*2)==(bh+ba*2) ?'draw':((ah+aa*2)>(bh+ba*2) ? 'A':'B'));
+ah=6.2;
+aa=28;
+bh=5.7;
+ba=33;
+console.log("Winner : " + ( (ah+aa*2)==(bh+ba*2) ?'draw':((ah+aa*2)>(bh+ba*2) ? 'A':'B')));
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++*/
 // Function statement and function expression
@@ -150,6 +150,45 @@ var myfun=function(param){
 var name ="vishal";
 
 // Statement
-if(){
+if(true){
    // Some code   
 }
+   
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++*/
+// Array index is zero based
+var student =['vishal','mahesh','pravin'];
+var student_roll =new Array(1421,1324,1451);
+console.log("students : " + student);
+console.log("students_roll : " + student_roll);
+student[0]='sachin';
+console.log("students : " + student);
+
+var mynotype = ['vishal','gavali',true,29];
+console.log("mynotype : " + mynotype);
+
+// push : add element at ent of array
+console.log("mynotype.push('black')");
+mynotype.push('black');
+console.log("mynotype : " + mynotype);
+
+// unshift :  add element at begining of array
+console.log("mynotype.unshift('blur')");
+mynotype.unshift('blur');
+console.log("mynotype : " + mynotype);
+
+// pop : remove element at ent of array
+console.log("mynotype.pop()");
+mynotype.pop();
+console.log("mynotype : " + mynotype);
+
+// shift : remove element at begining of array
+console.log("mynotype.shift()");
+mynotype.shift();
+console.log("mynotype : " + mynotype);
+
+// indexOf : show the index of element
+console.log("mynotype.indexOf('sachin') : " + mynotype.indexOf('sachin'));
+
+console.log("mynotype.indexOf(29) : " + mynotype.indexOf(29));
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++*/
