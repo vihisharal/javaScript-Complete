@@ -133,3 +133,23 @@ ba=prompt("Player B Enter age : ");
 console.log("Winner : " + ( (ah+aa*2)==(bh+ba*2) ?'draw':((ah+aa*2)>(bh+ba*2) ? 'A':'B'));
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++*/
+// Function statement and function expression
+
+// Function statement
+function myfun(param){
+    // some code
+}
+
+// Function expression
+var myfun=function(param){
+    // some code
+}
+
+//Expression
+34+89;
+var name ="vishal";
+
+// Statement
+if(){
+   // Some code   
+}
