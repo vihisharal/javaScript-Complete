@@ -9,6 +9,9 @@ function subtopictitle(x){
     console.log("\n    >>>"+x+"<<<\n");
 }
 
+function end(){             print('/*++++++++++++++++++++++++++++++++++++++++*/');
+}
+
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 topictitle('Hoisting');
 // Hoisting
@@ -100,6 +103,55 @@ function third(){
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+topictitle('this Keywords');
+// this Keywords
+
+subtopictitle('Example 1');
+//Example 1
+print(this);
+
+subtopictitle('Example 2');
+//Example 2
+function  calculateAge(year){
+    print('Inside calculateAge function: ')
+    print(">>>> "+ (2018-year));
+    print(">>>> "+ this);
+}
+calculateAge(1993);
+
+
+subtopictitle('Example 3');
+//Example 3
+var vishal ={
+    name : 'vishal',
+    yearOfBirth: 1990,
+    calculateAge : function(){
+        print(">>>> "+ this);
+        print(this);
+        print(">>>> "+ (2018-this.yearOfBirth));
+        
+        function innerFunction(){
+            print('Inside innerFunction');
+            print(">>>> "+ this);
+        }
+        innerFunction();
+    }    
+}
+vishal.calculateAge();
+
+// Rule : when regular function call happen then this will point to window object.
+// when object called happen then this will point to object which is calling.
+
+
+subtopictitle('Example 4 : function borrowing');
+//Example 4 : function borrowing
+var rahul = {
+    name : 'Rahul',
+    yearOfBirth:1987
+}
+// function borrowing
+rahul.calculateAge = vishal.calculateAge;
+rahul.calculateAge();
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
@@ -119,3 +171,4 @@ function third(){
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+end();
