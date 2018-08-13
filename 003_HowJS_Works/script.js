@@ -6,7 +6,7 @@ function topictitle(x){
 }
 
 function subtopictitle(x){
-    console.log("\n>>>"+x+"<<<\n");
+    console.log("\n    >>>"+x+"<<<\n");
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -64,15 +64,39 @@ foo1();
 topictitle('Scoping');
 // Scoping
 
+subtopictitle('Example: 1');
+// Example : 1
 var a= 'Hello!';
 first(); 
 
 function first(){
     var b ='Hi!';
+    second();
     function second(){
         var c='Hey!';
         print(a+' '+b+' '+c);
     }
+}
+
+subtopictitle('Example: 2');
+// Example : 2
+var a= 'Hello!';
+first(); 
+
+function first(){
+    var b ='Hi!';
+    second();
+    function second(){
+        var c='Hey!';
+        third();
+    }
+}
+function third(){
+    var d ='vishal';
+    print(a);
+    print(d);
+    //print(b); // Error not in scope
+    //print(c); // Error not in scope
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
