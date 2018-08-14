@@ -10,7 +10,9 @@
 <body>
     <h1>Java Script Object and Fuctions</h1>
     <div class="odject">
-        <discription><heading>Object In JavaScript</heading></discription>
+        <discription>
+            <heading>Object In JavaScript</heading>
+        </discription>
         <discription>
             Everything in Javascript is an Object. (Well,almost everything)
             <hr>
@@ -50,42 +52,42 @@
         <discription>
             <discription>Prototype And Prototype Chains <b> -----></b> </discription>
             <discription>
-            <table align= "center";>
-                <tr>
-                    <td>Vishal</td>
-                    <td>Person</td>
-                    <td>Object</td>
-                    <td>null</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ul>
-                            <li>Vishal</li>
-                            <li>1990</li>
-                            <li>Pune</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>calculateAge()</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>hasOwnProperty()</li>
-                            <li>isPrototypeOf()</li>
-                            <li>constructor</li>
-                            <li>toString()</li>
-                            <li>...</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>null</li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
+                <table align="center" ;>
+                    <tr>
+                        <td>Vishal</td>
+                        <td>Person</td>
+                        <td>Object</td>
+                        <td>null</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Vishal</li>
+                                <li>1990</li>
+                                <li>Pune</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>calculateAge()</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>hasOwnProperty()</li>
+                                <li>isPrototypeOf()</li>
+                                <li>constructor</li>
+                                <li>toString()</li>
+                                <li>...</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>null</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
             </discription>
         </discription>
         <discription>
@@ -98,8 +100,135 @@
                     <li>When a cretain method (or property) is called,and if it not found, the search moves on the object's prototype. This continues until the method is found: prototype chain</li>
                     <li></li>
                 </ul>
-            </discription>    
+            </discription>
         </discription>
+        <discription>
+            <heading>Primitive vs Objjects</heading>
+            <discription>
+                <table>
+                    <thead>
+                        <th>Primitives</th>
+                        <th>Objects</th>
+                    </thead>
+                    <tr>
+                        <td>
+                            <ul style="list-style: decimal">
+                                <li>Primitive variable store data that is actual value</li>
+                                <li>They hold own copt of data not the ref</li>
+                                <li>If you assign primitive value to variable then that value is hold by variable</li>
+                                <li>In function call only value is copied to parameter</li>
+                                <li>In function we are attend to change the value then is not affected to original variable</li>
+                                <li>In function called you have local copy of variable in parameter but when you are using variable name same as we are paasing as to it then it will change.</li>
+                                <li>Ex:1 to explain 5 point. var a=23; function change(x){ x=34;} change(a); after this will not change the value of a</li>
+                                <li>Ex:2 to explain 6 point. var a=23; function change(){ a=34;} change(a); after this will change the value of a.</li>
+                            </ul>
+
+                        </td>
+                        <td>
+                            <ul style="list-style: decimal">
+                                <li>While Object variablr store hold an ref to which they is point</li>
+                                <li>They hold ref not the actual data</li>
+                                <li>If you assign object to variable then this will hold same ref to that same assign object</li>
+                                <li>In function call only ref is copied to parameter</li>
+                                <li>In function and attend to change the value then is affected to original variable since we are passing ref to parameter</li>
+                            </ul>
+
+                        </td>
+                    </tr>
+                </table>
+            </discription>
+        </discription>
+        <hr>
+        <discription>
+            <discription>
+                <heading>Function</heading>
+            </discription>
+            <discription>
+                <ul style="list-style: decimal">
+                    <li>Function is instance of the Object.</li>
+                    <li>A function behaves like any Object.</li>
+                    <li>We can store function in a variable.</li>
+                    <li>We can pass a function as an argument to another function</li>
+                    <li>We can return a function from a function.</li>
+                </ul>
+            </discription>
+        </discription>
+        <discription>
+            <discription>
+                <heading>Function returning function</heading>
+            </discription>
+            <discription>
+                <pre>
+    function jodShedule(age){
+        if(a>18){
+            return function(timming){
+                if(timming==='day'){
+                    return function(post){
+                        if(post==='teacher'){
+                            return '10 AM sunday';
+                        }
+                        else if(post==='manager'){
+                            return '01 PM sunday';
+                        }
+                    }
+                }
+                else if(timming==='night'){
+                    return function(post){
+                        if(post==='watman'){
+                            return '10 AM Tuesday';
+                        }
+                        else if(post==='telecaller'){
+                            return '11 AM Friday';
+                        }
+                    }                            
+                }
+            }
+        }
+        else {
+            return 'No Job';
+        }
+    }
+    
+    console.log(jodShedule(18)('day')('teacher'));
+    // output:  10 AM Sunday       
+    
+    console.log(jodShedule(18)('night')('telecaller'));
+    // output:  11 AM Friday       
+            
+    </pre>
+            </discription>
+        </discription>
+        <discription>
+            <discription>
+                <heading>Immediatly invoked function expression</heading>
+            </discription>
+            <discription>
+                <pre>
+            ( function( agr1 ) {
+            var score=Math.random()*10;
+            print('score : '+ score);
+            print('score >=5 : ' +(score >=5-agr1));
+            } )(5);
+            // output always : true
+            </pre>
+            </discription>
+        </discription>
+        <discription>
+            <discription>
+                <heading>Closure</heading>
+            </discription>
+            <discription>
+                An inner function has always access to the variable and parameter of its outer function, even after the outer function has returned. 
+            </discription>
+        </discription>        
+        <discription>
+            <discription>
+                <heading>Bind ,Call and Apply</heading>
+            </discription>
+            <discription>
+            
+            </discription>
+        </discription>        
     </div>
 </body>
 <script src="script.js"></script>
