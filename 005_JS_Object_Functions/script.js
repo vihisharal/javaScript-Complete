@@ -314,11 +314,48 @@ retirement(70)(1990);
 
 subtopictitle('Bind ,Call and Apply');
 // Bind ,Call and Apply
+var vishal={
+    name:'vishal',
+    age:28,
+    job:'laundry boy',
+    presentation:function(style,timeOfDay){
+        if(style==='formal'){
+            print('Good '+timeOfDay+' ,ladies and gentalmen! I\'m '+this.name+' and I\'m a '+this.job+' and I\'m '+this.age+' years old.');
+        }
+        else if(style==='friendly'){
+            print('Hey! What\'s up? This is really a good '+timeOfDay+' ,ladies and gentalmen! I\'m '+this.name+' and I\'m a '+this.job+' and I\'m '+this.age+' years old.');
+        }        
+    }
+}
 
+vishal.presentation('formal','morning');
 
+var sachin ={
+    name:'Sachin',
+    age: 24,
+    job:'Software Develoaper'
+}
 
+// Method borrowing
+
+// Sachine want to define presentation function but vishal already implimented it so sachin want to use that one
+
+subtopictitle('call function');
+// Now here the call function intro
+vishal.presentation.call(sachin,'friendly','Morning');
+
+subtopictitle('apply function');
+// Now here the apply function intro
+vishal.presentation.apply(sachin,['formal','Afternoon']);
+
+subtopictitle('bind function');
+// Now here the bind function intro
+var vishalFriendly=vishal.presentation.bind(vishal,'friendly');
+vishalFriendly('Morning');
+vishalFriendly('Afternoon');
+
+var sachinFormal=vishal.presentation.bind(sachin,'formal');
+sachinFormal('Morning');
+sachinFormal('Afternoon');
 
 print('\n\n\n');
-
-
-
