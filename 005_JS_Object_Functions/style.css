@@ -1,0 +1,63 @@
+
+body {
+    width: 75%;
+    background-color: antiquewhite;
+    align-content: center;
+    margin: auto;
+    
+}
+
+h1{
+    color: brown;
+    background-color: floralwhite;
+}
+
+heading {
+    font-size: 40px;
+    font-weight: 200;
+    text-align: center;
+    text-decoration-color: firebrick;
+    background-color: blueviolet;
+    display: block;
+    padding: 5px;
+}
+
+discription {
+    font-size: 20px;
+    font-weight: 200;
+    background-color: azure;
+    display: block;
+    padding: 7px;
+    border-style: groove;
+    border-radius:  20xp;
+}
+discription > table {
+    width: auto;
+    display:  block;
+}
+discription > pre {
+    width: auto;
+    display:  block;
+    font-size: 15px;
+}
+
+table {
+    font-size: 20px;
+}
+tr td:nth-child(odd){
+    background-color: darkorange;
+    
+}
+tr td:nth-child(even){
+    background-color: aqua;
+}
+
+tr:nth-child(1){
+    border-style: dashed
+}
+ul{
+    list-style: none;
+    align-items: baseline;
+    vertical-align: middle;
+    font-size: 15px;
+}

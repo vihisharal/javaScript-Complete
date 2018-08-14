@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Java Script Object and Fuctions</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Java Script Object and Fuctions</h1>
+    <div class="odject">
+        <discription><heading>Object In JavaScript</heading></discription>
+        <discription>
+            Everything in Javascript is an Object. (Well,almost everything)
+            <hr>
+            <table>
+                <thead>
+                    <th>Primitives</th>
+                    <th>Everything Else ..</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+
+                            <ul>
+                                <li>Number</li>
+                                <li>String</li>
+                                <li>Boolean</li>
+                                <li>Undefined</li>
+                                <li>Null</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Arrays</li>
+                                <li>Functions</li>
+                                <li>Objects</li>
+                                <li>Dates</li>
+                                <li>Wrappers for Numbers,String,Boolean</li>
+                                <li>...IS AN OBJECT</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </discription>
+        <hr>
+        <discription>
+            <discription>Prototype And Prototype Chains <b> -----></b> </discription>
+            <discription>
+            <table align= "center";>
+                <tr>
+                    <td>Vishal</td>
+                    <td>Person</td>
+                    <td>Object</td>
+                    <td>null</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Vishal</li>
+                            <li>1990</li>
+                            <li>Pune</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>calculateAge()</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>hasOwnProperty()</li>
+                            <li>isPrototypeOf()</li>
+                            <li>constructor</li>
+                            <li>toString()</li>
+                            <li>...</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>null</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            </discription>
+        </discription>
+        <discription>
+            <heading>Some Short About Object</heading>
+            <discription>
+                <ul style="list-style: decimal">
+                    <li>Every jacascript has a prototype property.which makes inheritance possible in JS</li>
+                    <li>Prototype property of an object is where we put methods and properties that we want other objects to inherit</li>
+                    <li>The Constructor prototype property is NOT the prototype of constructor itself.it's the property os ALL instance that are created through it.</li>
+                    <li>When a cretain method (or property) is called,and if it not found, the search moves on the object's prototype. This continues until the method is found: prototype chain</li>
+                    <li></li>
+                </ul>
+            </discription>    
+        </discription>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
