@@ -115,7 +115,7 @@ print(obj3);
 function change(a,b){
     age =35;
     a=28;    
-    b.name='Mumbai';
+    b.city='Mumbai';
 }
 
 print('change(age,obj3)');

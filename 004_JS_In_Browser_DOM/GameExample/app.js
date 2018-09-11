@@ -119,7 +119,7 @@ function initializingGame(){
     maxScore=50;
     gameDecision=true;
     preScore=0;
-    // chane the css property of having id dice
+    // change the css property of having id dice
     document.querySelector('.dice').style.display='none';
     document.querySelector('.dice2').style.display='none';
 
@@ -134,6 +134,7 @@ function initializingGame(){
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.remove('winner');
     document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.btn-max').textContent= maxScore;
     // for new active player rondomly
     activePlayer =Math.floor(Math.random() *2);
     document.querySelector('.player-'+activePlayer+'-panel').classList.add('active');
@@ -152,10 +153,7 @@ document.querySelector('.btn-set').addEventListener('click',function(){
     else {
         document.querySelector('.btn-max').textContent= setScore;
         maxScore=setScore;
-    }   
-
-        
-    
+    }      
 });
 
 // challenge 
