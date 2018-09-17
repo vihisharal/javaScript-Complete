@@ -1,0 +1,24 @@
+{
+  "name": "javascript_complete",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "js-trans": "./node_modules/.bin/babel --presets es2015 007_ES6_ES2015/script.js --out-file 007_ES6_ES2015/script-transpiled.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vihisharal/javaScript-Complete.git"
+  },
+  "author": "Vishal Gavali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vihisharal/javaScript-Complete/issues"
+  },
+  "homepage": "https://github.com/vihisharal/javaScript-Complete#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}

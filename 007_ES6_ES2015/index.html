@@ -15,7 +15,16 @@
         .green { background-color: green; }
         .blue { background-color: dodgerblue; }
         .orange { background-color: orangered; }
-            
+        .challenge-prob{
+            width: 450px;
+            height: auto;
+            margin: 40px auto;
+            background-color: #ffa;
+            text-align: center;
+        }
+        .challenge-prob  img{
+            width: 430px;
+        }
     </style>
 </head>
 <body>
@@ -24,6 +33,13 @@
     <div class="box blue">I'm blue!</div>
     <div class="box orange">I'm orange!</div>
         
-    <script src="script.js" ></script>
+    <div class="challenge-prob"><h3>Problem Statement for Challenge</h3><img src="./ES6%20Chalenge%20problem.png" alt="Problem Statement"></div>
+    
+    <!--final-version-->
+    <script src="polyfill.min.js"></script>
+    <script src="script-transpiled.js"></script>
+    
+    <!--development version-->
+    <!--<script src="script.js" ></script>-->
 </body>
 </html>

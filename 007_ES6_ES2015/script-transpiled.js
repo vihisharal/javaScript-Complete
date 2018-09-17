@@ -1,3 +1,15 @@
+"use strict";
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function print(x) {
     console.log(x);
 }
@@ -167,8 +179,6 @@ ages6= years.map((cur,index) => {
 print(ages6);
 */
 
-
-
 /*
 ////////////// Lecture: Arrow Function 2 //////////////
 topictitle('Lecture: Arrow Function 2');
@@ -288,7 +298,6 @@ print('age : '+age);
 print('retierment : '+retierment);
 */
 
-
 /*
 ////////////// Lecture : Destructuring //////////////
 topictitle('Lecture : Arrays');
@@ -341,7 +350,6 @@ subtopictitle('ES6');
 print(ages.findIndex(cur=> cur>= 18));
 print(ages.find(cur=> cur>=18));
 */
-
 
 /*
 ////////////// Lecture : Spread Operator //////////////
@@ -627,7 +635,6 @@ harshad.wonMedal();
 print(harshad);
 */
 
-
 /*
 ////////////// Lecture : Challenge Code : By Self//////////////
 topictitle('Lecture : Challenge Code By Self');
@@ -709,83 +716,125 @@ Streets5.forEach(function(key,value){
 ////////////// Lecture : Challenge Code : By Jonas//////////////
 topictitle('Lecture : Challenge Code By Jonas');
 
-class Element {
-    constructor(name,bYear){
-        this.name=name.toUpperCase();
-        this.bYear=bYear;
+var Element = function Element(name, bYear) {
+    _classCallCheck(this, Element);
+
+    this.name = name.toUpperCase();
+    this.bYear = bYear;
+};
+
+var Park = function (_Element) {
+    _inherits(Park, _Element);
+
+    function Park(name, bYear, area, numTreess) {
+        _classCallCheck(this, Park);
+
+        var _this = _possibleConstructorReturn(this, (Park.__proto__ || Object.getPrototypeOf(Park)).call(this, name, bYear));
+
+        _this.area = area;
+        _this.numTreess = numTreess;
+        return _this;
     }
+
+    _createClass(Park, [{
+        key: "treeDensity",
+        value: function treeDensity() {
+            var density = (this.numTreess / this.area).toFixed(2);
+            print(this.name + " has a tree density of " + density + " trees per square km.");
+        }
+    }]);
+
+    return Park;
+}(Element);
+
+var Street = function (_Element2) {
+    _inherits(Street, _Element2);
+
+    function Street(name, bYear, sLength) {
+        var sSize = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 3;
+
+        _classCallCheck(this, Street);
+
+        var _this2 = _possibleConstructorReturn(this, (Street.__proto__ || Object.getPrototypeOf(Street)).call(this, name, bYear));
+
+        _this2.sLength = sLength;
+        _this2.sSize = sSize;
+        return _this2;
+    }
+
+    _createClass(Street, [{
+        key: "classfyStreet",
+        value: function classfyStreet() {
+            var classification = new Map();
+            classification.set(1, 'tiny');
+            classification.set(2, 'small');
+            classification.set(3, 'normal');
+            classification.set(4, 'big');
+            classification.set(5, 'huge');
+            print(this.name + ", build in " + this.bYear + ", is a " + classification.get(this.sSize) + ".");
+        }
+    }]);
+
+    return Street;
+}(Element);
+
+var allParks = [new Park('Park 1', 1987, 0.2, 215), new Park('Park 2', 1894, 2.9, 3541), new Park('Park 3', 1953, 0.4, 949)];
+
+var allstreets = [new Street('Street 1', 1999, 1.1, 4), new Street('Street 2', 2008, 2.7, 2), new Street('Street 3', 2015, 0.8), new Street('Street 4', 1982, 2.5, 5)];
+
+function calc(arr) {
+    var sum = arr.reduce(function (prev, cur, index) {
+        return prev + cur;
+    }, 0);
+    return [sum, sum / arr.length];
 }
 
-class Park extends Element{
-    constructor(name,bYear,area,numTreess ){
-        super(name,bYear);
-        this.area=area;
-        this.numTreess=numTreess;
-    }
-    treeDensity(){
-        const density=(this.numTreess / this.area).toFixed(2);
-        print(`${this.name} has a tree density of ${density} trees per square km.`); 
-    }
-}
-
-class Street extends Element{
-    constructor(name,bYear,sLength,sSize=3 ){
-        super(name,bYear);
-        this.sLength=sLength;
-        this.sSize=sSize;
-    }  
-    classfyStreet(){
-        const classification= new Map();
-        classification.set(1,'tiny');
-        classification.set(2,'small');
-        classification.set(3,'normal');
-        classification.set(4,'big');
-        classification.set(5,'huge');
-        print(`${this.name}, build in ${this.bYear}, is a ${classification.get(this.sSize)}.`);
-    }
-}
-
-const allParks = [new Park('Park 1',1987,0.2,215),
-                  new Park('Park 2',1894,2.9,3541),
-                  new Park('Park 3',1953,0.4,949)];
-
-const allstreets=[new Street('Street 1',1999,1.1,4),
-                 new Street('Street 2',2008,2.7,2),
-                 new Street('Street 3',2015,0.8),
-                 new Street('Street 4',1982,2.5,5)];
-
-function calc(arr){
-    const sum=arr.reduce((prev,cur,index) => prev + cur,0);
-    return [sum , sum/arr.length];
-}
-
-(function reportParks(p){
+(function reportParks(p) {
     subtopictitle('PARK REPORT');
-    
+
     // Density
-    p.forEach(ele => ele.treeDensity());
-    
+    p.forEach(function (ele) {
+        return ele.treeDensity();
+    });
+
     // Average age
-    const ages=p.map(ele => new Date().getFullYear() - ele.bYear);
-    const [totalAge, avgAge]=calc(ages);
-    print(`Our ${p.length} parks have an average of ${avgAge.toFixed(2)} years.`)
-    
+    var ages = p.map(function (ele) {
+        return new Date().getFullYear() - ele.bYear;
+    });
+
+    var _calc = calc(ages),
+        _calc2 = _slicedToArray(_calc, 2),
+        totalAge = _calc2[0],
+        avgAge = _calc2[1];
+
+    print("Our " + p.length + " parks have an average of " + avgAge.toFixed(2) + " years.");
+
     //Which park has more than trees
-    const i = p.map(ele => ele.numTreess).findIndex(ele => ele >= 1000);
+    var i = p.map(function (ele) {
+        return ele.numTreess;
+    }).findIndex(function (ele) {
+        return ele >= 1000;
+    });
     print(i);
-    print(`${p[i].name} has more than 1000 trees.`);
-    
-    
+    print(p[i].name + " has more than 1000 trees.");
 })(allParks);
 
-(function reportStreets(s){
+(function reportStreets(s) {
     subtopictitle('Street Report');
-    
+
     // total and average lenght of town's streets
-    const [totalLength,avgLength]=calc(s.map(ele => ele.sLength));
-    print(`Our ${s.length} streets have total length of ${totalLength.toFixed(2)} km,with an average ${avgLength.toFixed(2)}.`);
-    
+
+    var _calc3 = calc(s.map(function (ele) {
+        return ele.sLength;
+    })),
+        _calc4 = _slicedToArray(_calc3, 2),
+        totalLength = _calc4[0],
+        avgLength = _calc4[1];
+
+    print("Our " + s.length + " streets have total length of " + totalLength.toFixed(2) + " km,with an average " + avgLength.toFixed(2) + ".");
+
     //Classify sizes
-    s.forEach(ele => ele.classfyStreet());
-    
+    s.forEach(function (ele) {
+        return ele.classfyStreet();
+    });
 })(allstreets);
