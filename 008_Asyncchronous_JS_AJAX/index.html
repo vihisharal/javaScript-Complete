@@ -8,7 +8,7 @@
 <body>
     <h1>Asynchronous JS</h1>
     <script>
-        const second = () =>{
+        /*const second = () =>{
             setTimeout(()=>console.log('This run after 2s'),2000);
             
         }
@@ -17,7 +17,34 @@
             second();
             console.log('End');
         }
-        first();
+        first();*/
+        
+        function getRecipe(){
+            setTimeout(()=>{
+                const recipeID=[523,883,432,974];
+                console.log(recipeID);
+                
+                setTimeout((id)=>{
+                    const recipe={
+                        title:'Batata Fry',
+                        publisher:'Vishal Gavali',
+                        year:new Date().getFullYear()
+                    };
+                    console.log(`${id} : ${recipe.title}`);
+                    
+                    setTimeout(publisher=> {
+                        const recipe2={
+                            title:'Tomato-Onion Bhaji',
+                            publisher:'Vishal Gavali',
+                            year:new Date().getFullYear()
+                        };
+                        console.log(`${publisher} : ${recipe2.title}`);
+                    },1500,recipe.publisher);
+                    
+                },1000,recipeID[2]);
+            },1500);
+        }
+        getRecipe();
     </script>
 </body>
 </html>
