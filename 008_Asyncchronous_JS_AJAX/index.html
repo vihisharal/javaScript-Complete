@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Asynchronous JS</title>
+</head>
+<body>
+    <h1>Asynchronous JS</h1>
+    <script>
+        const second = () =>{
+            setTimeout(()=>console.log('This run after 2s'),2000);
+            
+        }
+        const first = () =>{
+            console.log('hello, first');
+            second();
+            console.log('End');
+        }
+        first();
+    </script>
+</body>
+</html>
