@@ -144,13 +144,14 @@
         };
         getRecipesAW().then(result=> console.log(`${result.title} is best ever`));*/
         
-        /*Ajax calls with fetch and promises*/
+        //Ajax calls with fetch and promises
         function getWeather(weatherID){
-            /*fetch('https:/www.metaweather.com/api/location/2487956/')*/
-            /*fetch('https://crossorigin.me/https:/www.metaweather.com/api/location/2487956/')*/
-            /*fetch(`./2487956.json`)*/
-            /*fetch(`./${weatherID}.json`)*/
-            fetch(`http://www.whateverorigin.org/get?url=/https:/www.metaweather.com/api/location/${weatherID}/`)
+            //fetch('https:/www.metaweather.com/api/location/2487956/')
+            //fetch('https://crossorigin.me/https:/www.metaweather.com/api/location/2487956/')
+            //fetch(`./2487956.json`)
+            //fetch(`./${weatherID}.json`)
+            //fetch(`http://www.whateverorigin.org/get?url=/https:/www.metaweather.com/api/location/${weatherID}/`)
+            fetch(`./${weatherID}.json`)
                 .then(result => {
                 console.log(result);
                 return result.json();
@@ -162,8 +163,23 @@
             })
                 .catch(error => console.log('Error',error));            
         }
-        getWeather(2487956);
-        /*10. > 7.not working*/
+        getWeather(44418); /*London*/
+        getWeather(2487956); /*San Francisco*/
+        
+        async function getWeatherAW(weatherID){
+            try{    
+                const result=await fetch(`https:/www.metaweather.com/api/location/${weatherID}/`);
+                const data = await result.json();
+                console.log(data);
+                const tomarrow = data.consolidated_weather[1];
+                console.log(`Temperature in ${data.title} stey between ${tomarrow.min_temp.toFixed(2)} and ${tomarrow.max_temp.toFixed(2)}.`);
+                return data;
+            }catch(error){
+                console.log(error);    
+            }
+        }
+        getWeatherAW(44418);
+        getWeatherAW(2487956);
     </script>
 </body>
 </html>
