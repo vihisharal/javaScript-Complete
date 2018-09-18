@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "js-trans": "./node_modules/.bin/babel --presets es2015 007_ES6_ES2015/script.js --out-file 007_ES6_ES2015/script-transpiled.js "
+    "js-trans": "./node_modules/.bin/babel --presets es2015 007_ES6_ES2015/script.js --out-file 007_ES6_ES2015/script-transpiled.js ",
+    "dev":"webpack"  
   },
   "repository": {
     "type": "git",
