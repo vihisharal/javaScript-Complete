@@ -18,6 +18,7 @@ console.log(`Using imported function! ${searchView.add(searchView.ID,10)} and ${
 import Search from 'Search';
 import Recipe from 'Recipe';
 import * as searchView from 'searchView';
+import * as recipeView from 'recipeView';
 import {elements,renderLoader,clearLoader} from 'base';
 
 /**Global state of app
@@ -34,6 +35,7 @@ const state ={};
 const controllSearch=async ()=>{
     // 1.get query from view
     const query = searchView.getInput();
+    console.log(query); 
     
     if(query){
         //2.new serch object and to state
@@ -48,6 +50,8 @@ const controllSearch=async ()=>{
         try{
             //4.Search for results
             await state.search.getResults();
+            console.log(state.search);
+            
             console.log(`4.Search for results`);
 
             //5.render result in UI
@@ -55,7 +59,7 @@ const controllSearch=async ()=>{
             searchView.renderResults(state.search.result);
             //console.log(`5.render result in UI`);               
         }catch(e){
-            alert('Something wrong with search...');
+            alert('Something wrong with search...: may beyour api key limit expire.');
             clearLoader();
         }
     }
@@ -65,6 +69,8 @@ elements.searchForm.addEventListener('submit',e=>{
     e.preventDefault();
     controllSearch();
 });
+
+
 
 elements.searchResPages.addEventListener('click',e=>{
     const btn= e.target.closest('.btn-inline');
@@ -87,22 +93,29 @@ const controllRecipe= async ()=>{
     console.log(id);
     if(id){
         // Prepare UI for changes
+        recipeView.clearRecipe();
+        renderLoader(elements.recipe);
         
         // Create new recipr object
         state.recipe = new Recipe(id);
         
         try{
-            // get recipe data
+            // get recipe data and parse ingredients
             await state.recipe.getRecipe();
-
+            state.recipe.parseIngredients();
+            console.log(state.recipe);
+            
             // Calculate servings and time 
             state.recipe.calcTime();
             state.recipe.calcServings();
 
             //Render recipe
+            clearLoader();
+            recipeView.renderRecipe(state.recipe);
             console.log(state.recipe);            
         }catch(e){
             alert('Error Processing recipe!.');
+            clearLoader();
         }
         
     }

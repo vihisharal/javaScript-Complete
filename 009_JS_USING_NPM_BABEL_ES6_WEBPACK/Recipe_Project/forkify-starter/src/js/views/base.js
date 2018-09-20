@@ -3,7 +3,8 @@ export const elements={
     searchInput:document.querySelector('.search__field'),
     searchResList:document.querySelector('.results__list'),
     searchResPages:document.querySelector('.results__pages'),
-    searchRes:document.querySelector('.results')
+    searchRes:document.querySelector('.results'),
+    recipe:document.querySelector('.recipe')
 }
 
 export const elementStrings={
