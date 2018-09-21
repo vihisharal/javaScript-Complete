@@ -13,6 +13,8 @@ module.exports ={
             base$:path.resolve(__dirname,'src/js/views/base.js'),
             searchView$:path.resolve(__dirname,'src/js/views/searchView.js'),            
             Search$:path.resolve(__dirname,'src/js/models/Search.js'),
+            listView$:path.resolve(__dirname,'src/js/views/listView.js'),            
+            List$:path.resolve(__dirname,'src/js/models/List.js'),            
             recipeView$:path.resolve(__dirname,'src/js/views/recipeView.js'),            
             Recipe$:path.resolve(__dirname,'src/js/models/Recipe.js')            
         },
