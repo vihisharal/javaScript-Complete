@@ -18,9 +18,11 @@ console.log(`Using imported function! ${searchView.add(searchView.ID,10)} and ${
 import Search from 'Search';
 import Recipe from 'Recipe';
 import List from 'List';
+import Likes from 'Likes';
 import * as searchView from 'searchView';
 import * as recipeView from 'recipeView';
 import * as listView from 'listView';
+import * as likesView from 'likesView';
 
 import {elements,renderLoader,clearLoader} from 'base';
 
@@ -160,30 +162,79 @@ elements.shopping.addEventListener('click',ele=>{
         
         //delete from UI
         listView.deleteItem(id);
+    }else if(ele.target.matches('.shopping__count-value')){
+        // Handle the count update
+        const val = parseInt(ele.target.value,10);
+        state.list.updateConut(id,val);
     }
 });
+
+const controllLikes = ()=>{
+    if(!state.likes)  state.likes=new Likes();
+    const currentID=state.recipe.id;
+    
+    
+    if(!state.likes.isLiked(currentID)){
+        //user has NOT yet like recipe
+        
+        //Add  like to data
+        const newLike=state.likes.addLike(
+            currentID,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );
+        
+        //toggle to  like button
+        
+        // add like to Ui list
+        console.log(state.likes);
+        
+    }else{
+        //user has NOT yet like recipe
+
+        //remove  like from data
+        state.likes.deleteLike(currentID);
+
+        //toggle to  like button
+
+        //remove like from Ui list
+        console.log(state.likes);
+    }
+};
 
 //Handling recipe button click
 elements.recipe.addEventListener('click',ele=>{
     if(ele.target.matches('.btn-decrease, .btn-decrease *')){
         // Decrease button click
-        if(state.recipe.servings > 1)
+        if(state.recipe.servings > 1){
             state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);          
+        }
     }
     else if(ele.target.matches('.btn-increase, .btn-increase *')){
         // Increase button click
         state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe);
     }
     else if(ele.target.matches('.recipe__btn--add, .recipe__btn--add *')){
+        // Add ingredientds to shoping list
         controllList();
     }
-    recipeView.updateServingsIngredients(state.recipe);
+    else if(ele.target.matches('.recipe__love, .recipe__love *')){
+        // Like controller
+        controllLikes();
+    }
+    
     console.log(state.recipe);
 });
+
+/*
+---Likes Controller
+*/
+
+
 // video 11 .18 apply
-
-window.list =new List();
-
 
 
 
