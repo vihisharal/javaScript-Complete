@@ -13,7 +13,7 @@ console.log(`Using imported function! ${searchView.add(searchView.ID,10)} and ${
 
 //<site,user,password,key>
 //<'https://developer.edamam.com/','abc123@lndex.org','password'>
-//<'https://food2work.com','dreux.royel@lndex.org','password','baf48f1fd505270cc7cd9d2d26e30ad8'>
+//<'https://food2work.com','refael.jaithan@lndex.org','password','3396977ecfe77596e35e2e39c314bbdc'>
 
 import Search from 'Search';
 import Recipe from 'Recipe';
@@ -121,7 +121,7 @@ const controllRecipe= async ()=>{
 
             //Render recipe
             clearLoader();
-            recipeView.renderRecipe(state.recipe);
+            recipeView.renderRecipe(state.recipe,state.likes.isLiked(id));
             console.log(state.recipe);            
         }catch(e){
             alert('Error Processing recipe!.'+e);
@@ -169,6 +169,9 @@ elements.shopping.addEventListener('click',ele=>{
     }
 });
 
+//TESTING
+state.likes = new Likes();
+
 const controllLikes = ()=>{
     if(!state.likes)  state.likes=new Likes();
     const currentID=state.recipe.id;
@@ -186,6 +189,8 @@ const controllLikes = ()=>{
         );
         
         //toggle to  like button
+        likesView.toggleLikeBtn(true);
+        
         
         // add like to Ui list
         console.log(state.likes);
@@ -197,10 +202,12 @@ const controllLikes = ()=>{
         state.likes.deleteLike(currentID);
 
         //toggle to  like button
+        likesView.toggleLikeBtn(false);
 
         //remove like from Ui list
         console.log(state.likes);
     }
+    likesView.toggleLikeMenu(state.likes.getNumberLikes());
 };
 
 //Handling recipe button click
