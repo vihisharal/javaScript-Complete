@@ -20,7 +20,6 @@ export default class Recipe {
             
         } catch (e) {
             console.log(e);
-            alert('Something went wrong :(');
         }
     }
     
@@ -48,9 +47,7 @@ export default class Recipe {
             
             // 2 remove parenthesis
             ingredient =ingredient.replace(/ *\([^)]*\) */g, ' ');
-                        
-            console.log(ingredient);
-            
+                                    
             // 3 Parse ingredients into count,unit and ingredient
             const arrIng = ingredient.split(' ');
             const unitIndex = arrIng.findIndex(ele2 => units.includes(ele2));            
@@ -92,10 +89,8 @@ export default class Recipe {
                     ingredient
                 }
             }
-            //console.log(objIng);
             return objIng;
         });
-        //console.log(newIngredients);
         this.ingredients = newIngredients;
     }
     

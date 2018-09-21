@@ -23,3 +23,7 @@ export const deleteItem = id=>{
     item.parentElement.removeChild(item);
     if(item) console('remove item');console.log(item);
 };
+
+export const clearList = ()=>{
+    elements.shopping.innerHTML='';
+};

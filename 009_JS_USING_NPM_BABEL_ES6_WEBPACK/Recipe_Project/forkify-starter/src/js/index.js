@@ -8,12 +8,6 @@ import str from './models/Search';
 import * as searchView from 'searchView'; //Way-3
 console.log(`Using imported function! ${searchView.add(searchView.ID,10)} and ${searchView.multiply(searchView.ID,3)} and ${str}.`)
 */
-//https://food2work.cmo/api/search
-// 462b1cc8d4f2730081462fbc65136320 ,3396977ecfe77596e35e2e39c314bbdc
-
-//<site,user,password,key>
-//<'https://developer.edamam.com/','abc123@lndex.org','password'>
-//<'https://food2work.com','azeem.reef@lndex.org','password','dfb40d371dd12a2d2b75d015d0cf030f'>
 
 import Search from 'Search';
 import Recipe from 'Recipe';
@@ -33,19 +27,16 @@ import {elements,renderLoader,clearLoader} from 'base';
 -- Liked Recipes
 */
 const state ={};
-window.state =state; 
 /*
 ---Search Controller
 */
 const controllSearch=async ()=>{
     // 1.get query from view
     const query = searchView.getInput();
-    console.log(query); 
     
     if(query){
         //2.new serch object and to state
         state.search = new Search(query);
-        console.log(`2.new serch object and to state`);
         
         //3.Prepare UI for results
         searchView.clearInput();
@@ -55,16 +46,13 @@ const controllSearch=async ()=>{
         try{
             //4.Search for results
             await state.search.getResults();
-            console.log(state.search);
             
-            console.log(`4.Search for results`);
-
             //5.render result in UI
             clearLoader();
             searchView.renderResults(state.search.result);
             //console.log(`5.render result in UI`);               
         }catch(e){
-            alert('Something wrong with search...: may beyour api key limit expire.');
+            console.log('Something wrong with search...: may be your api key limit expire.');
             clearLoader();
         }
     }
@@ -79,15 +67,12 @@ elements.searchForm.addEventListener('submit',e=>{
 
 elements.searchResPages.addEventListener('click',e=>{
     const btn= e.target.closest('.btn-inline');
-    console.log(btn);
     if(btn){
         const goToPage=parseInt(btn.dataset.goto,10);
         searchView.clearResults();
         searchView.renderResults(state.search.result,goToPage);
-        console.log(goToPage);
     }
 });
-
 
 /*
 ---Recipe Controller
@@ -95,7 +80,6 @@ elements.searchResPages.addEventListener('click',e=>{
 const controllRecipe= async ()=>{
     //Get id from ur;
     const id=window.location.hash.replace('#','');
-    console.log(id);
     if(id){
         // Prepare UI for changes
         recipeView.clearRecipe();
@@ -103,17 +87,14 @@ const controllRecipe= async ()=>{
         
         // Highlight selected search item
         if(state.search) searchView.hightlightSelected(id);
-        console.log(state.search);
+
         // Create new recipr object
         state.recipe = new Recipe(id);
         
         try{
             // get recipe data and parse ingredients
             await state.recipe.getRecipe();
-            console.log(state.recipe);
-            window.r=state.recipe;
             state.recipe.parseIngredients();
-            console.log(state.recipe);
             
             // Calculate servings and time 
             state.recipe.calcTime();
@@ -124,7 +105,7 @@ const controllRecipe= async ()=>{
             recipeView.renderRecipe(state.recipe,state.likes.isLiked(id));
             console.log(state.recipe);            
         }catch(e){
-            alert('Error Processing recipe!.'+e);
+            console.log('Error Processing recipe!.\n'+e);
             clearLoader();
         }
         
@@ -169,14 +150,12 @@ elements.shopping.addEventListener('click',ele=>{
     }
 });
 
-//TESTING
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumberLikes());
-
+/*
+-- Likes Controller
+*/
 const controllLikes = ()=>{
     if(!state.likes)  state.likes=new Likes();
-    const currentID=state.recipe.id;
-    
+    const currentID=state.recipe.id;    
     
     if(!state.likes.isLiked(currentID)){
         //user has NOT yet like recipe
@@ -187,31 +166,34 @@ const controllLikes = ()=>{
             state.recipe.title,
             state.recipe.author,
             state.recipe.img
-        );
-        
+        );        
         //toggle to  like button
-        likesView.toggleLikeBtn(true);
-        
-        
+        likesView.toggleLikeBtn(true);        
         // add like to Ui list
         likesView.renderLike(newLike);
-        //console.log(state.likes);
-        
     }else{
         //user has NOT yet like recipe
 
         //remove  like from data
         state.likes.deleteLike(currentID);
-
         //toggle to  like button
         likesView.toggleLikeBtn(false);
-
         //remove like from Ui list
         likesView.deleteLike(currentID);
-        console.log(state.likes);
     }
     likesView.toggleLikeMenu(state.likes.getNumberLikes());
 };
+
+// Restore likes recipes on page load
+window.addEventListener('load',()=>{
+    state.likes = new Likes();
+    //Restore the likes
+    state.likes.readStorage();
+    //Toggle like menu button 
+    likesView.toggleLikeMenu(state.likes.getNumberLikes());
+    // Render the existing likes
+    state.likes.likes.forEach(like=>likesView.renderLike(like));
+});
 
 //Handling recipe button click
 elements.recipe.addEventListener('click',ele=>{
@@ -228,6 +210,9 @@ elements.recipe.addEventListener('click',ele=>{
         recipeView.updateServingsIngredients(state.recipe);
     }
     else if(ele.target.matches('.recipe__btn--add, .recipe__btn--add *')){
+        //Clear the previous view
+        listView.clearList();
+        
         // Add ingredientds to shoping list
         controllList();
     }
@@ -235,16 +220,8 @@ elements.recipe.addEventListener('click',ele=>{
         // Like controller
         controllLikes();
     }
-    
-    console.log(state.recipe);
 });
 
-/*
----Likes Controller
-*/
-
-
-// video 11 .18 apply
 
 
 

@@ -27,18 +27,5 @@ export const renderLoader= parent=>{
 
 export const clearLoader= ()=>{
     const loaderEle = document.querySelector(`.${elementStrings.loader}`);
-    //console.log(loaderEle);
     if(loaderEle) {loaderEle.parentElement.removeChild(loaderEle);}
 };
-
-
-/*// try
-export const saveSearchResultInFile=(title,result)=>{
-    fs.writeFile("./${title}.json"
-                 ,JSON.stringify(result)
-                 ,error=>{
-        if(error) { console.log(error); return;}
-        console.log('File ${title}.json created.');
-    });
-}
-*/

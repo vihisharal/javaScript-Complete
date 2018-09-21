@@ -5,9 +5,6 @@ import {limitRecipeTitle} from 'searchView';
 export const toggleLikeBtn= isLiked=>{
     const iconString = isLiked ? 'icon-heart':'icon-heart-outlined';
     document.querySelector('.recipe__love use').setAttribute('href',`img/icons.svg#${iconString}`);
-    
-    //img/icons.svg#icon-heart-outlined
-    
 };
 
 export const toggleLikeMenu =numLikes=>{
@@ -29,7 +26,6 @@ export const renderLike=like=>{
         </li>    
     `;
     elements.likesList.insertAdjacentHTML('beforeend',markup);
-    console.log(like);
 };
 
 export const deleteLike = id =>{
