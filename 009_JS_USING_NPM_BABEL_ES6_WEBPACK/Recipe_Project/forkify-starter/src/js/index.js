@@ -11,9 +11,9 @@ console.log(`Using imported function! ${searchView.add(searchView.ID,10)} and ${
 //https://food2work.cmo/api/search
 // 462b1cc8d4f2730081462fbc65136320
 
-//<site,user,password>
+//<site,user,password,key>
 //<'https://developer.edamam.com/','abc123@lndex.org','password'>
-//<'https://food2work.com','koden.rojelio@lndex.org','password'>
+//<'https://food2work.com','dreux.royel@lndex.org','password','baf48f1fd505270cc7cd9d2d26e30ad8'>
 
 import Search from 'Search';
 import Recipe from 'Recipe';
@@ -96,12 +96,17 @@ const controllRecipe= async ()=>{
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
         
+        // Highlight selected search item
+        if(state.search) searchView.hightlightSelected(id);
+        console.log(state.search);
         // Create new recipr object
         state.recipe = new Recipe(id);
         
         try{
             // get recipe data and parse ingredients
             await state.recipe.getRecipe();
+            console.log(state.recipe);
+            window.r=state.recipe;
             state.recipe.parseIngredients();
             console.log(state.recipe);
             
@@ -114,7 +119,7 @@ const controllRecipe= async ()=>{
             recipeView.renderRecipe(state.recipe);
             console.log(state.recipe);            
         }catch(e){
-            alert('Error Processing recipe!.');
+            alert('Error Processing recipe!.'+e);
             clearLoader();
         }
         
@@ -127,7 +132,20 @@ const controllRecipe= async ()=>{
     window.addEventListener(event,controllRecipe)
 );
 
-
+//Handling recipe button click
+elements.recipe.addEventListener('click',ele=>{
+    if(ele.target.matches('.btn-decrease, .btn-decrease *')){
+        // Decrease button click
+        if(state.recipe.servings > 1)
+            state.recipe.updateServings('dec');
+    }
+    else if(ele.target.matches('.btn-increase, .btn-increase *')){
+        // Increase button click
+        state.recipe.updateServings('inc');
+    }
+    recipeView.updateServingsIngredients(state.recipe);
+    console.log(state.recipe);
+});
 // video 11 .18 apply
 
 

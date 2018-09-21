@@ -18,6 +18,12 @@ export const clearResultElement = () => {
     elements.searchRes.innerHTML = '';
 };
 
+export const hightlightSelected= id=>{
+    const resultsArr= Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.forEach(ele=> {ele.classList.remove('results__link--active')});
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+};
+
 // pasta with chiess and tomato
 // acc=0,acc+cur.length = 5  ;newTitle=['pasta'];
 // acc=5,acc+cur.length = 5+4  ;newTitle=['pasta','with'];
