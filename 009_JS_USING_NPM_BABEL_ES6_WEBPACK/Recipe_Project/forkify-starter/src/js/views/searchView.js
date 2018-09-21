@@ -21,7 +21,7 @@ export const clearResultElement = () => {
 export const hightlightSelected= id=>{
     const resultsArr= Array.from(document.querySelectorAll('.results__link'));
     resultsArr.forEach(ele=> {ele.classList.remove('results__link--active')});
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href*="#${id}"]`).classList.add('results__link--active');
 };
 
 // pasta with chiess and tomato
@@ -30,7 +30,7 @@ export const hightlightSelected= id=>{
 // acc=9,acc+cur.length = 9+5  ;newTitle=['pasta','with','chiess'];
 // acc=14,acc+cur.length = 15+3 //limit exceed ;newTitle=['pasta','with','chiess'];
 
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => {

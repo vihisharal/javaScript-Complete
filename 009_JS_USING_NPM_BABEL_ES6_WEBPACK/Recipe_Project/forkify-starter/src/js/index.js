@@ -9,11 +9,11 @@ import * as searchView from 'searchView'; //Way-3
 console.log(`Using imported function! ${searchView.add(searchView.ID,10)} and ${searchView.multiply(searchView.ID,3)} and ${str}.`)
 */
 //https://food2work.cmo/api/search
-// 462b1cc8d4f2730081462fbc65136320
+// 462b1cc8d4f2730081462fbc65136320 ,3396977ecfe77596e35e2e39c314bbdc
 
 //<site,user,password,key>
 //<'https://developer.edamam.com/','abc123@lndex.org','password'>
-//<'https://food2work.com','refael.jaithan@lndex.org','password','3396977ecfe77596e35e2e39c314bbdc'>
+//<'https://food2work.com','azeem.reef@lndex.org','password','dfb40d371dd12a2d2b75d015d0cf030f'>
 
 import Search from 'Search';
 import Recipe from 'Recipe';
@@ -171,6 +171,7 @@ elements.shopping.addEventListener('click',ele=>{
 
 //TESTING
 state.likes = new Likes();
+likesView.toggleLikeMenu(state.likes.getNumberLikes());
 
 const controllLikes = ()=>{
     if(!state.likes)  state.likes=new Likes();
@@ -193,7 +194,8 @@ const controllLikes = ()=>{
         
         
         // add like to Ui list
-        console.log(state.likes);
+        likesView.renderLike(newLike);
+        //console.log(state.likes);
         
     }else{
         //user has NOT yet like recipe
@@ -205,6 +207,7 @@ const controllLikes = ()=>{
         likesView.toggleLikeBtn(false);
 
         //remove like from Ui list
+        likesView.deleteLike(currentID);
         console.log(state.likes);
     }
     likesView.toggleLikeMenu(state.likes.getNumberLikes());
